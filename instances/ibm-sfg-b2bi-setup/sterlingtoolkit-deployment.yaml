@@ -16,19 +16,22 @@ spec:
     spec:
       containers:
       - name: sterlingtoolkit
-        image: quay.io/hollisc/sterlingtoolkit:1.0.6
-        command: ["/bin/bash", "-ce", "cp /temp/db2jcc4.jar /var/nfs-data/resources/ && tail -f /dev/null"]
+        image: quay.io/ibmtechgarage/sterlingtoolkit:1.0.8
+        command: ["/bin/bash", "-ce", "cp /temp/*.jar /var/nfs-data/resources/ && tail -f /dev/null"]
         volumeMounts:
         - mountPath: /var/nfs-data/resources
-          name: volume
-          subPath: resources
+          name: resources
         - mountPath: /var/nfs-data/documents
-          name: volume
-          subPath: documents
+          name: documents
         - mountPath: /var/nfs-data/logs
-          name: volume
-          subPath: logs
+          name: logs
       volumes:
-      - name: volume
+      - name: documents
         persistentVolumeClaim:
-          claimName: sterlingb2bitoolkit-pvc
+          claimName: ibm-sfg-b2bi-sfg-documents
+      - name: logs
+        persistentVolumeClaim:
+          claimName: ibm-sfg-b2bi-sfg-logs
+      - name: resources
+        persistentVolumeClaim:
+          claimName: ibm-sfg-b2bi-sfg-resources
