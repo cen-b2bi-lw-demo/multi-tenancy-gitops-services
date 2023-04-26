@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: lwfw
-          image: image-registry.openshift-image-registry.svc:5000/b2bi-prod/lightwell-portal:v2.13.0
+          image: image-registry.openshift-image-registry.svc:5000/lightwell-portal:v2.13.0
           # command: [ "/bin/bash", "-c", "--" ]
           # args: [ "while true; do sleep 30; done;" ]
           ports:
