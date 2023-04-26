@@ -3,9 +3,9 @@ resources:
 # - ./mqcm.yaml
 
 # generatorOptions:
-#   disableNameSuffixHash: true
-#   annotations:
-#     argocd.argoproj.io/sync-wave: '200'
+#  disableNameSuffixHash: true
+#  annotations:
+#    argocd.argoproj.io/sync-wave: '200'
 # configMapGenerator:
 #   kind: configmap
 # - name: mqcm
