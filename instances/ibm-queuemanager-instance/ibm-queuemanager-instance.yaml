@@ -65,8 +65,8 @@ spec:
     pod:
       containers:
         - env:
-            - name: DEBUG
-              value: true
+            - name: MQSNOAUT
+              value: 'yes'
           name: qmgr
           resources: {}
   terminationGracePeriodSeconds: 30
