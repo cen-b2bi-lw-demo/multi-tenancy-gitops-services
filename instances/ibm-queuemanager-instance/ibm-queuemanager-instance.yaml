@@ -50,11 +50,11 @@ spec:
     image: >-
       docker.io/ibmcom/mq
     storage:
-      defaultClass: ibmc-block-gold
+      defaultClass: ibmc-file-gold-gid
       persistedData:
         enabled: true
       queueManager:
-        class: ibmc-block-gold
+        class: ibmc-file-gold-gid
         size: 2Gi
         type: persistent-claim
       recoveryLogs:
