@@ -67,7 +67,11 @@ spec:
         - env:
             - name: MQSNOAUT
               value: 'yes'
+            - name: MQ_QMGR_NAME
+              value: qmgr
           name: qmgr
+          securityContext:
+            privileged: true
           resources: {}
   terminationGracePeriodSeconds: 30
   tracing:

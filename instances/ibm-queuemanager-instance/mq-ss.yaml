@@ -1,0 +1,71 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '220'
+  name: mq
+  namespace: tools
+  labels:
+    argo.cntk/instance: ibm-sfg-mq-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mq
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mq
+    spec:
+      containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: mq
+          env:
+            - name: LICENSE
+              value: accept
+            - name: MQ_QMGR_NAME
+              value: qmgr
+          securityContext:
+            privileged: true
+          ports:
+            - name: mq
+              containerPort: 1414
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: mqvol
+              mountPath: /var/mqm
+          terminationMessagePolicy: File
+          image: ibmcom/mq
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: mq
+      serviceAccount: mq
+      securityContext: {}
+      schedulerName: default-scheduler
+  volumeClaimTemplates:
+    - kind: PersistentVolumeClaim
+      apiVersion: v1
+      metadata:
+        name: mqvol
+        creationTimestamp: null
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 20Gi
+        storageClassName: ibmc-block-gold
+        volumeMode: Filesystem
+      status:
+        phase: Pending
+  serviceName: mq
+  podManagementPolicy: OrderedReady
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      partition: 0
+  revisionHistoryLimit: 10

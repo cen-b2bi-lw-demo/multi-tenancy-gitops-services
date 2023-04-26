@@ -13,10 +13,10 @@ spec:
     spec:
       serviceAccountName: b2bi
       containers:
-      - name: "lightwell-sqldb"
+      - name: "lightwell-db2"
         securityContext:
           runAsUser: 1010
-        image: quay.io/ibmtechgarage/lightwell-sql:1.0.0
+        image: quay.io/ibmtechgarage/create-db2-b2bi:1.0.1
         imagePullPolicy: Always
         command: ["bash"]
         args:
