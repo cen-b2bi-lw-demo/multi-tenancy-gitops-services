@@ -2,8 +2,8 @@ apiVersion: mq.ibm.com/v1beta1
 kind: QueueManager
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: '220'
-  name: qm-inst-svc
+    argocd.argoproj.io/sync-wave: '320'
+  name: ibm-qm-instance
   namespace: tools
 spec:
   license:
@@ -29,14 +29,14 @@ spec:
       timeoutSeconds: 3
     route:
       enabled: true
-    name: QM3
+    name: QM5
     livenessProbe:
       failureThreshold: 1
       initialDelaySeconds: 90
       periodSeconds: 10
       successThreshold: 1
       timeoutSeconds: 5
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: Always
     debug: false
     mqsc:
       - configMap:
@@ -48,11 +48,11 @@ spec:
       type: SingleInstance
       updateStrategy: RollingUpdate
     image: >-
-      docker.io/ibmcom/mq
+      docker.io/ibmcom/mq@sha256:ab781c17c563c216002f3abb737aebcbe1e586d0b8c1dab1a2da8294e6edcc2c
     storage:
       defaultClass: ibmc-file-gold-gid
       persistedData:
-        enabled: true
+        enabled: false
       queueManager:
         class: ibmc-file-gold-gid
         size: 2Gi
@@ -61,20 +61,16 @@ spec:
         enabled: false
   securityContext:
     initVolumeAsRoot: false
-    # supplemantalGroups:
-    #   - 99
-    #   - 65534
+    supplementalGroups:
+      - 99
+      - 65534
   template:
     pod:
       containers:
         - env:
             - name: MQSNOAUT
               value: 'yes'
-            - name: MQ_QMGR_NAME
-              value: qmgr
           name: qmgr
-          securityContext:
-            privileged: true
           resources: {}
   terminationGracePeriodSeconds: 30
   tracing:
