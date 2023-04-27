@@ -8,9 +8,9 @@ metadata:
 spec:
   license:
     accept: true
-    license: L-RJON-CD3JKX
+    license: L-APIG-BYHCL7
     metric: ProcessorValueUnit
-    use: Production
+    use: Development
   queueManager:
     metrics:
       enabled: true
@@ -78,6 +78,6 @@ spec:
     collector: {}
     enabled: false
     namespace: ''
-  version: 9.3.0.0-r1
+  version: 9.2.3.0-r1
   web:
     enabled: true
