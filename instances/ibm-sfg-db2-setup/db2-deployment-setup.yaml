@@ -1,0 +1,67 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+  name: ibm-sfg-db2
+  namespace: db2
+  labels:
+    app: ibm-sfg-db2
+    app.kubernetes.io/component: ibm-sfg-db2
+    app.kubernetes.io/instance: ibm-sfg-db2
+    app.kubernetes.io/name: ibm-sfg-db2
+    app.kubernetes.io/part-of: ibm-sfg-db2
+    app.openshift.io/runtime-namespace: db2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ibm-sfg-db2
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ibm-sfg-db2
+        deploymentconfig: ibm-sfg-db2
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+    spec:
+      volumes:
+        - name: ibm-sfg-db2-1
+          emptyDir: {}
+        - name: ibm-sfg-db2-2
+          emptyDir: {}
+      serviceAccountName: db2
+      containers:
+        - resources: {}
+          terminationMessagePath: /dev/termination-log
+          name: ibm-sfg-db2
+          env:
+            - name: LICENSE
+              value: accept
+          ports:
+            - containerPort: 22
+              protocol: TCP
+            - containerPort: 50000
+              protocol: TCP
+            - containerPort: 55000
+              protocol: TCP
+            - containerPort: 60006
+              protocol: TCP
+            - containerPort: 60007
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: ibm-sfg-db2-1
+              mountPath: /database
+            - name: ibm-sfg-db2-2
+              mountPath: /hadr
+          terminationMessagePolicy: File
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/db2/ibm-sfg-db2@sha256:363e4b12bed45be81a9bbf4f6ae643549b812dd48114774fce2d668de5cffb12
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext:
+        runAsUser: 0
+        privileged: true
+      schedulerName: default-scheduler

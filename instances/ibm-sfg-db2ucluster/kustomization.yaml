@@ -1,0 +1,3 @@
+resources:
+- db2/db2-instance.yaml
+- db2/db2u-scc.yaml
