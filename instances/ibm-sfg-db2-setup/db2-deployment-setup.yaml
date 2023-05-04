@@ -1,7 +1,6 @@
-kind: Deployment
+kind: StatefulSet
 apiVersion: apps/v1
 metadata:
-  annotations:
   name: ibm-sfg-db2
   namespace: db2
   labels:
@@ -18,23 +17,20 @@ spec:
       app: ibm-sfg-db2
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: ibm-sfg-db2
-        deploymentconfig: ibm-sfg-db2
       annotations:
         openshift.io/generated-by: OpenShiftWebConsole
     spec:
-      volumes:
-        - name: ibm-sfg-db2-1
-          emptyDir: {}
-        - name: ibm-sfg-db2-2
-          emptyDir: {}
+      securityContext:
+        privileged: true
       serviceAccountName: db2
       containers:
-        - resources: {}
-          terminationMessagePath: /dev/termination-log
-          name: ibm-sfg-db2
+        - name: ibm-sfg-db2
+          securityContext:
+            privileged: true
+          image: quay.io/hollisc/ibm-db2-sfg-lwfw:1.0.1
+          imagePullPolicy: IfNotPresent
           env:
             - name: LICENSE
               value: accept
@@ -49,19 +45,36 @@ spec:
               protocol: TCP
             - containerPort: 60007
               protocol: TCP
-          imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: ibm-sfg-db2-1
               mountPath: /database
             - name: ibm-sfg-db2-2
               mountPath: /hadr
+          terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
-          image: >-
-            image-registry.openshift-image-registry.svc:5000/db2/ibm-sfg-db2@sha256:363e4b12bed45be81a9bbf4f6ae643549b812dd48114774fce2d668de5cffb12
+  volumeClaimTemplates:
+    - metadata:
+        name: ibm-sfg-db2-1
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "ibmc-file-gold-gid"
+        resources:
+          requests:
+            storage: 1Gi
+    - metadata:
+        name: ibm-sfg-db2-2
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "ibmc-file-gold-gid"
+        resources:
+          requests:
+            storage: 1Gi
       restartPolicy: Always
-      terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
-      securityContext:
-        runAsUser: 0
-        privileged: true
-      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
