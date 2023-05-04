@@ -1,0 +1,2 @@
+resources:
+- db2-deployment-setup.yaml
