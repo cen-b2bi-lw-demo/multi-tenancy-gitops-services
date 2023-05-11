@@ -11,3 +11,4 @@ resources:
 - roles/role.yaml
 - roles/rolebinding.yaml
 - roles/serviceaccount.yaml
+- secrets/itxa-ingress-secret.yaml
