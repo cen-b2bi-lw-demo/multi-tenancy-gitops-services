@@ -92,8 +92,7 @@ spec:
           volumeMounts:    
             - name: itxadatasetuplog
               mountPath: /opt/IBM/logs/db
-      volumes:
-              
+      volumes:   
         - name: itxadatasetuplog
           persistentVolumeClaim:
             claimName: itxa-nfs-claim

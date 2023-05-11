@@ -112,7 +112,7 @@ spec:
             cpu: 1
             memory: 2560Mi        
         volumeMounts:
-        - name: itxa-nfs-claim-common
+        - name: itxa-pv
           mountPath: "/logs"
       containers:
       - name: release-name-ibm-itxa-prod-itxauiserver
@@ -200,7 +200,7 @@ spec:
           mountPath: "/config/apps/spe.war/WEB-INF/web.xml"
           subPath: web.xml
           
-        - name: itxa-nfs-claim-common
+        - name: itxa-pv
           mountPath: /logs   
       volumes:
       - name: config
@@ -230,6 +230,6 @@ spec:
           - key: web.xml
             path: web.xml
             mode: 0754  
-      - name: itxa-nfs-claim-common
+      - name: itxa-pv
         persistentVolumeClaim:
           claimName: itxa-nfs-claim    
