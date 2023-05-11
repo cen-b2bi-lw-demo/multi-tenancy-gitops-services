@@ -10,4 +10,4 @@ resources:
 - secrets/itxa-user-secret.yaml
 - roles/role.yaml
 - roles/rolebinding.yaml
-- serviceaccount.yaml
+- roles/serviceaccount.yaml
