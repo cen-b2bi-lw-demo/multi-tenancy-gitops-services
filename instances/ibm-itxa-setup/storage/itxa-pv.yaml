@@ -3,7 +3,7 @@ kind: PersistentVolume
 metadata:
   name: itxa-pv
   annotations:
-    argocd.argoproj.io/sync-wave: "240"
+    argocd.argoproj.io/sync-wave: "235"
 spec:
   accessModes:
   - ReadWriteMany

@@ -4,7 +4,7 @@ metadata:
   namespace: tools
   name: itxa-nfs-claim
   annotations:
-    argocd.argoproj.io/sync-wave: "235"
+    argocd.argoproj.io/sync-wave: "240"
 spec:
   accessModes:
   - ReadWriteMany
