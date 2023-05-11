@@ -8,3 +8,6 @@ resources:
 # - storage/itxa-pvc.yaml
 - secrets/itxa-secrets.yaml
 - secrets/itxa-user-secret.yaml
+- roles/role.yaml
+- roles/rolebinding.yaml
+- serviceaccount.yaml
