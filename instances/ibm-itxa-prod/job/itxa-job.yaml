@@ -70,7 +70,7 @@ spec:
       containers:
         - name: release-name-ibm-itxa-prod-itxadatasetup
           image: >-
-              image-registry.openshift-image-registry.svc:5000/tools/itxa-ui-server-may_10@sha256:4360cd9723b4a8b4c9e66140217defd102b7a73ee816c19ded02cfd9c0160b02
+              image-registry.openshift-image-registry.svc:5000/tools/new-init-db@sha256:0aa33b73a6f3ee4c4713230497a7ccadfd075193de58f08e4973ed6b4d10dc7d
           imagePullPolicy: IfNotPresent
           securityContext:
             privileged: false
