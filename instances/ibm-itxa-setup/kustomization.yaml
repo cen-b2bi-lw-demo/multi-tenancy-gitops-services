@@ -6,5 +6,5 @@ resources:
 - storage/itxa-nfs-claim-pvc.yaml
 - storage/itxa-pv.yaml
 - storage/itxa-pvc.yaml
-- secret/itxa-secrets.yaml
-- secret/itxa-user-secret.yaml
+- secrets/itxa-secret.yaml
+- secrets/itxa-user-secret.yaml
