@@ -83,7 +83,7 @@ spec:
               - ALL
           command: ["/bin/bash", "-c"]
           args:
-          - "/opt/IBM/$SPE_VERSION/bin/processcerts.sh && /opt/IBM/$SPE_VERSION/bin/executeAll.sh --DBTYPE=db2 --deployEDIPack=true --deployFSPPack=true --deployHCPack=true --tenantId= --ignoreVersionWarning=true --s3host= --bucket= --objectKey= --secureDBConnection=false && touch /opt/IBM/logs/db/itxadatasetup.complete && while true; do sleep 30; done;"
+          - "/opt/IBM/$SPE_VERSION/bin/processcerts.sh && /opt/IBM/$SPE_VERSION/bin/executeAll.sh --DBTYPE=db2 --deployEDIPack=true --deployFSPPack=true --deployHCPack=true --tenantId=DEFAULT --ignoreVersionWarning=true --s3host=s3.us-east.cloud-object-storage.appdomain.cloud --bucket=txa-10 --objectKey=db2jcc4.jar --secureDBConnection=false && touch /opt/IBM/logs/db/itxadatasetup.complete && while true; do sleep 30; done;"
           envFrom:
           - configMapRef:
               name: itxa-config
