@@ -1,5 +1,5 @@
 resources:
-- deployment/itxa-deployment.yaml
+#- deployment/itxa-deployment.yaml
 # - deployment/itxa-hpa.yaml
 - job/itxa-job.yaml
 - service/itxa-svc.yaml
