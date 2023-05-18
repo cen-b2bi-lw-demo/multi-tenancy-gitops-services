@@ -13,4 +13,4 @@ spec:
     server: fsf-wdc0701n-fz.adn.networklayer.com
     path: /IBM02SEV2112072_156077/data01
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: ibmc-file-gold
+  storageClassName: itxa-sc
