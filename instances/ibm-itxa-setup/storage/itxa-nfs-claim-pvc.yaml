@@ -12,5 +12,5 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: ibmc-file-gold
-  volumeName: itxa-pv
+  volumeName: itxa-nfs-claim-common
   volumeMode: Filesystem

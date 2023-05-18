@@ -2,9 +2,9 @@ resources:
 - configmap/itxa-config.yaml
 - network/itxa-networkpolicy.yaml
 - security/itxa-scc.yaml
-# - storage/itxa-nfs-claim-common-pv.yaml
+- storage/itxa-nfs-claim-common-pv.yaml
 - storage/itxa-nfs-claim-pvc.yaml
-- storage/itxa-pv.yaml
+#- storage/itxa-pv.yaml
 # - storage/itxa-pvc.yaml
 - secrets/itxa-secrets.yaml
 - secrets/itxa-user-secret.yaml

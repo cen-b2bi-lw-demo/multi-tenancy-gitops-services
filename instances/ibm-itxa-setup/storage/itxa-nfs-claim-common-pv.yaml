@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  namespace: tools
   name: itxa-nfs-claim-common
   annotations:
-    argocd.argoproj.io/sync-wave: "230"
+    argocd.argoproj.io/sync-wave: "235"
 spec:
   accessModes:
   - ReadWriteMany
