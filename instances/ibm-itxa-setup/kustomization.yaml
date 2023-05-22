@@ -3,7 +3,7 @@ resources:
 - network/itxa-networkpolicy.yaml
 - security/itxa-scc.yaml
 - storage/itxa-nfs-claim-common-pv.yaml
-- storage/itxa-nfs-claim-pvc.yaml
+#- storage/itxa-nfs-claim-pvc.yaml
 #- storage/itxa-pv.yaml
 # - storage/itxa-pvc.yaml
 - secrets/itxa-secrets.yaml
