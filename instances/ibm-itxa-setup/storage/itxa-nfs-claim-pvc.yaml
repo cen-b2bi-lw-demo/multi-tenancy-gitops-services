@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: tools
+  namespace: default
   name: itxa-nfs-claim
   annotations:
     argocd.argoproj.io/sync-wave: "240"
